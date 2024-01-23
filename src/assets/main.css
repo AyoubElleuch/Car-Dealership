@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Familjen+Grotesk&family=Montserrat+Alternates:wght@400;600&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.crimson-text{
+  font-family: "Crimson Text";
+}
+.IBM-Plex-Mono{
+  font-family: 'IBM Plex Mono', monospace;
+}
