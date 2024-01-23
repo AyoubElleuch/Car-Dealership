@@ -1,0 +1,48 @@
+name: Vue.js and Django CI
+
+on: [push, pull_request]
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies (frontend)
+      run: npm install
+    - name: Lint (frontend)
+      run: npm run lint
+    - name: Test (frontend)
+      run: npm run test
+
+  build-backend:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies (backend)
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Lint (backend)
+      run: # Add command for Python linting if needed
+    - name: Test (backend)
+      run: python manage.py test
+
+# Add additional steps for deployment, notifications, etc., as needed.
