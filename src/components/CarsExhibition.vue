@@ -10,33 +10,37 @@
             </select>
         </div>
         <div class="car-wrapper">
-            <div class="car-container crimson-text" v-for="(item, index) in fetchCars" :key="index">
-                <img class="car-image" :src="item.image" alt="">
+            <div class="car-container crimson-text" v-for="(item, index) in getFetchedCars" :key="index">
+                <img class="car-image" :src="item.picture" alt="">
                 <div class="car-info">
                     <img class="car-brand-logo" :src="item.logo" alt="">
-                    <h1 class="car-model">{{ item.model }}</h1>
-                    <h2 class="car-price">{{ item.price }}</h2>
+                    <h1 class="car-model">{{ item.brand }} {{ item.model }}</h1>
+                    <h2 class="car-price">{{ item.make_year }}</h2>
+                    <h2 class="car-price">₽{{ item.price }}</h2>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default{
     data(){
         return{
 
         }
     },
+    created(){
+        this.fetchCars();
+    },
     computed:{
         ...mapGetters('cars', ['getCars']),
-        fetchCars(){
+        getFetchedCars(){
             return this.getCars;
         }
     },
     methods:{
-
+        ...mapActions('cars', ['fetchCars'])
     }
 }
 </script>
@@ -67,6 +71,8 @@ select{
 }
 .car-image{
     width: 300px;
+    height: 200px;
+    object-fit: cover;
 }
 .car-info{
     position: relative;

@@ -1,7 +1,7 @@
 export default{
     namespaced: true,
     state:{
-        cars: [
+        /*cars: [
             {
                 model: "Mercedes-benz EQE Sedan",
                 brand: "Mercedes-benz",
@@ -65,13 +65,30 @@ export default{
                 image: "src/assets/images/cars/mercedes-benz-eqe-sedan.jpg",
                 price: "$74,900"
             },
-        ]
+        ]*/
+        cars: [],
     },
     mutations:{
-
+        SET_CARS(state, cars){
+            state.cars = cars;
+        }
     },
     actions:{
-
+        fetchCars({ commit }){
+            fetch('http://127.0.0.1:8000/api/all/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(cars => {
+                commit('SET_CARS', cars);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        }
     },
     getters:{
         getCars(state){
