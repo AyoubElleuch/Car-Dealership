@@ -59,6 +59,7 @@ export default {
           }
           return unique;
         }, []);
+        listOfYears.sort((a, b) => {return b-a});
         return listOfYears;
       },
       colors(){
