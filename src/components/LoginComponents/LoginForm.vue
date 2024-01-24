@@ -29,10 +29,12 @@ export default{
             const data = `${this.username}:${this.password}`;
             console.log('data: ', JSON.stringify(data));
 
-            await fetch("http://127.0.0.1:8000/api/cms/login/", {
+            await fetch("http://127.0.0.1:8000/cms/login/", {
                 method: "POST",
                 headers:{
                     'Content-Type': 'application/json',
+                    'WWW-Authenticate': 'Basic',
+                    'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify(data)
             })

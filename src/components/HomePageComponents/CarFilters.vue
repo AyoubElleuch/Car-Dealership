@@ -18,7 +18,7 @@
       <div class="filter-group">
         <h3>Price</h3>
         <input type="range" min="0" max="900000" step="1000" v-model="price">
-        <label>${{ price }}</label>
+        <label>{{ formatPrice(price) }}</label>
       </div>
       <div class="filter-group">
         <h3>Color</h3>
@@ -73,9 +73,12 @@ export default {
     },
     methods:{
       ...mapMutations('cars', ['setFiltersBrands', 'setFiltersYears', 'setFiltersPrice', 'setFiltersColors']),
-      printBrands(){
-        console.log(this.selectedBrands);
-      }
+      formatPrice(price){
+            return new Intl.NumberFormat('ja-JP',  {
+                        style: 'currency',
+                        currency: 'USD',
+                        }).format(price);
+        }
     },
     watch:{
       selectedBrands(newVal){
