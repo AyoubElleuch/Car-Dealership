@@ -21,7 +21,7 @@ jobs:
     #- name: Lint (frontend)
     #  run: npm run lint
     #- name: Test (frontend)
-    #  run: npm run test
+    run: npm test
 
   build-backend:
     runs-on: ubuntu-latest
