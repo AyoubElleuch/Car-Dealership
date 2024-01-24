@@ -22,28 +22,25 @@ export default{
     methods:{
         async login(){
             if(this.username == "" || this.password == ""){
-                console.log('you cant login');
-            }else{
-                console.log('you can login');
+                return
             }
-            const data = `${this.username}:${this.password}`;
+            const data = {
+                username: this.username,
+                password: this.password
+            };
             console.log('data: ', JSON.stringify(data));
 
-            await fetch("http://127.0.0.1:8000/cms/login/", {
+            await fetch("http://127.0.0.1:8000/api/login/", {
                 method: "POST",
                 headers:{
                     'Content-Type': 'application/json',
-                    'WWW-Authenticate': 'Basic',
-                    'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify(data)
             })
             .then(response =>{
-                console.log('here');
                 console.log(response);
             })
             .catch(error => {
-                console.log('error in login');
                 console.log(error);
             })
         }
