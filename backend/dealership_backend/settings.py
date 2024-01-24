@@ -63,7 +63,7 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "http://localhost:5173/login",
 ]
 
 ROOT_URLCONF = 'dealership_backend.urls'

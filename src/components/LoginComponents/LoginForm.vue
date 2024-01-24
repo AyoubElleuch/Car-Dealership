@@ -37,6 +37,7 @@ export default{
                 body: JSON.stringify(data)
             })
             .then(response =>{
+                console.log('here');
                 console.log(response);
             })
             .catch(error => {
