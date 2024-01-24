@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Car
 
+"""
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
@@ -13,7 +14,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         token['username'] = user.username
         return token
-
+"""
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
