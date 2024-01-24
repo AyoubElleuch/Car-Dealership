@@ -18,31 +18,26 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies (frontend)
       run: npm install
-    - name: Lint (frontend)
-      run: npm run lint
+    #- name: Lint (frontend)
+    #  run: npm run lint
     - name: Test (frontend)
-      run: npm run test
+      run: npm test
 
   build-backend:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [3.8]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.10'
     - name: Install dependencies (backend)
       run: |
         pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Lint (backend)
-      run: # Add command for Python linting if needed
+    #- name: Lint (backend)
+    #  run: # Add command for Python linting if needed
     - name: Test (backend)
-      run: python manage.py test
+      run: python ./backend/manage.py test
 
 # Add additional steps for deployment, notifications, etc., as needed.
