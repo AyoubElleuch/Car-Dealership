@@ -20,7 +20,7 @@ export default{
         }
     },
     methods:{
-        login(){
+        async login(){
             if(this.username == "" || this.password == ""){
                 console.log('you cant login');
             }else{
@@ -28,11 +28,11 @@ export default{
             }
             const data = `${this.username}:${this.password}`;
             console.log('data: ', JSON.stringify(data));
-            fetch("http://127.0.0.1:8000/api/cms/login/", {
+
+            await fetch("http://127.0.0.1:8000/api/cms/login/", {
                 method: "POST",
                 headers:{
                     'Content-Type': 'application/json',
-                    'WWW-Authenticate': 'Basic'
                 },
                 body: JSON.stringify(data)
             })
