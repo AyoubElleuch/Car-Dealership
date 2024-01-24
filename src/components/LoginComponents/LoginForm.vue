@@ -12,6 +12,7 @@
     </div>
 </template>
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 export default{
     data(){
         return{
@@ -20,6 +21,8 @@ export default{
         }
     },
     methods:{
+        ...mapMutations('login', ['setTokens']),
+        ...mapGetters('login', ['getTokens']),
         async login(){
             if(this.username == "" || this.password == ""){
                 return
@@ -38,7 +41,15 @@ export default{
                 body: JSON.stringify(data)
             })
             .then(response =>{
-                console.log(response);
+                return response.json();
+            })
+            .then(receivedData => {
+                const payload = {
+                    refresh: receivedData.refresh,
+                    access: receivedData.access
+                };
+                this.setTokens(payload);
+                this.$router.push('/');
             })
             .catch(error => {
                 console.log(error);
