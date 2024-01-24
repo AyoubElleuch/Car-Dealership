@@ -67,10 +67,32 @@ export default{
             },
         ]*/
         cars: [],
+        filters: {
+            brands: [],
+            years: [],
+            price: 900000,
+            colors: [],
+        },
+        sort: "",
     },
     mutations:{
         SET_CARS(state, cars){
             state.cars = cars;
+        },
+        setFiltersBrands(state, brands){
+            state.filters.brands = brands;
+        },
+        setFiltersYears(state, years){
+            state.filters.years = years;
+        },
+        setFiltersPrice(state, price){
+            state.filters.price = price;
+        },
+        setFiltersColors(state, colors){
+            state.filters.colors = colors;
+        },
+        setSort(state, sort){
+            state.sort = sort;
         }
     },
     actions:{
@@ -93,6 +115,12 @@ export default{
     getters:{
         getCars(state){
             return state.cars;
+        },
+        getFilters(state){
+            return state.filters;
+        },
+        getSort(state){
+            return state.sort;
         }
     }
 }

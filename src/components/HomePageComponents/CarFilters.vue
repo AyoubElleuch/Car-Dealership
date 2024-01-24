@@ -17,7 +17,7 @@
       </div>
       <div class="filter-group">
         <h3>Price</h3>
-        <input type="range" min="0" max="100000" step="1000" v-model="price">
+        <input type="range" min="0" max="900000" step="1000" v-model="price">
         <label>${{ price }}</label>
       </div>
       <div class="filter-group">
@@ -31,17 +31,65 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 export default {
     data() {
         return {
-            brands: ['Mercedes-Benz', 'Ford', 'KIA', 'Hundai', 'FIAT', 'McLaren'],
-            years: [2024, 2023, 2022, 2021],
-            colors: ['White', 'Black', 'Grey', 'Red'],
             selectedBrands: [],
             selectedYears: [],
             selectedColors: [],
-            price: 80000
+            price: 900000
         }
+    },
+    computed:{
+      ...mapGetters('cars', ['getCars']),
+      brands(){
+        let listOfBrands = this.getCars.reduce((unique, item) => {
+          if(!unique.includes(item.brand)){
+            unique.push(item.brand);
+          }
+          return unique;
+        }, []);
+        return listOfBrands;
+      },
+      years(){
+        let listOfYears = this.getCars.reduce((unique, item) => {
+          if(!unique.includes(item.make_year)){
+            unique.push(item.make_year);
+          }
+          return unique;
+        }, []);
+        return listOfYears;
+      },
+      colors(){
+        let listOfColors = this.getCars.reduce((unique, item) => {
+          if(!unique.includes(item.color)){
+            unique.push(item.color);
+          }
+          return unique;
+        }, []);
+        return listOfColors;
+      },
+    },
+    methods:{
+      ...mapMutations('cars', ['setFiltersBrands', 'setFiltersYears', 'setFiltersPrice', 'setFiltersColors']),
+      printBrands(){
+        console.log(this.selectedBrands);
+      }
+    },
+    watch:{
+      selectedBrands(newVal){
+        this.setFiltersBrands(newVal);
+      },
+      selectedYears(newVal){
+        this.setFiltersYears(newVal);
+      },
+      selectedColors(newVal){
+        this.setFiltersColors(newVal);
+      },
+      price(newVal){
+        this.setFiltersPrice(newVal);
+      }
     }
 }
 </script>

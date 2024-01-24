@@ -1,8 +1,8 @@
 <script>
-import navbar from '../components/NavBar.vue';
-import CarsExhibition from '@/components/CarsExhibition.vue';
-import CarFilters from '@/components/CarFilters.vue';
-import CarContact from '@/components/CarContact.vue';
+import navbar from '../components/HomePageComponents/NavBar.vue';
+import CarsExhibition from '@/components/HomePageComponents/CarsExhibition.vue';
+import CarFilters from '@/components/HomePageComponents/CarFilters.vue';
+import CarContact from '@/components/HomePageComponents/CarContact.vue';
 export default{
   components:{
     navbar,
